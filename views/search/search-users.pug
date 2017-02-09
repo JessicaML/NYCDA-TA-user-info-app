@@ -1,12 +1,15 @@
-extends ../application.pug
+extends ../application
 
 block content
   .container
-    .row
-      .col-xs-6.offset-xs-3
-        form(action="/search" method="POST")
-          .form-group
-            h4.text-xs-center Search Users
-            input(name="query" type="text" class="form-control" placeholder="Viktor")
+    .container
+      .row
+        .col-xs-6.col-xs-offset-3
+          h1 Search for a user:
 
-          button(type="submit" class="btn btn-success btn-block btn-lg") Search
+          form(action="/search" method="POST" class="form-inline float-xs-right" id="search-button")
+            .form-group
+              label(for="search") Search
+              input(name="query" class="form-control" )
+              button(type="Submit" class="btn btn-info" style="margin-top: 200px") Submit
+              ul.jl-app-search-results
