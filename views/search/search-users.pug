@@ -1,0 +1,14 @@
+extends ../application
+
+block content
+  .container
+    .row
+      .col-xs-6.col-xs-offset-3
+        h1 Search for a user:
+
+        form(action="/search" method="POST" id="search-button" autocomplete="off")
+          .form-group
+            label(for="search") Search
+            input(name="query" class="form-control" )
+            button(type="Submit" class="btn btn-info" style="margin-top: 200px") Submit
+            ul.jl-app-search-results
