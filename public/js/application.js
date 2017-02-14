@@ -16,10 +16,21 @@ $('#search-button input').on('keyup', function() {
       console.log(data);
       $(".jl-app-search-results").html('');
       data.forEach(function(element) {
+        console.log (element);
         $(".jl-app-search-results").append(
-          $("<li>" + element.firstname + ' ' + element.lastname + '</li>')
-          );
+          $("<li data-surname="+"'"+element.lastname+"'"+">"+element.firstname + ' ' + element.lastname + "</li>")
+        );
         });
       });
     }
+  });
+
+  console.log("YESSSSAPPENED!");
+
+  $(".jl-app-search-results").click(function(e) {
+    var lastname = (e.target).getAttribute("data-surname");
+
+    $.get('/'+lastname, function(data) {
+      window.location.href = '/'+ lastname;
+    });
   });
