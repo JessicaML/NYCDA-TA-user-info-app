@@ -5,6 +5,6 @@ block content
     hr
     each user in users
       .card.card-block
-        a(href="/users/" + user.lastname)
+        a(href="/" + user.lastname)
           h4(class="card-title")= user.firstname + " " + user.lastname
         p(class="card-text")= "Email: " + user.email
