@@ -11,11 +11,12 @@ const userRoutes = require('./routes/users'),
 const app = express();
 		userStore = require('./user-reader');
 
+var likeStore = JSON.parse(fs.readFileSync('likes.json'));
+
+
 app.use(express.static('public'));
 
 app.set('view engine', 'pug');
-
-app.use(express.static('./public'));
 
 app.use(morgan('dev'));
 
@@ -36,6 +37,19 @@ app.get('/api/search/*', (req, res) => {
   res.json(results);
 });
 
+app.post('/like', (request, response) => {
+  likeStore.likeCount = likeStore.likeCount + 1;
+
+  response.json(likeStore);
+
+  fs.writeFile('likes.json', JSON.stringify(likeStore), (error, data) => {
+    if (error) {
+      throw error;
+    }
+
+    console.log('new likeCount added to likes.json');
+  });
+});
 
 app.listen(3000, function() {
  console.log('Web server started on port 3000');
